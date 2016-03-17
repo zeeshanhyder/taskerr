@@ -272,6 +272,7 @@ h1,h2,h3,h4,h5,h6{
     align-self: center;
     display: flex;
     height:inherit;
+    padding:10px;
 }
 
 .addBoardInput{
