@@ -236,8 +236,10 @@ var AddNewTaskCard = React.createClass({
     render: function(){
         return(
             <div className="taskCard newTaskCard">
+                    <form className="addTaskForm" onSubmit={this.addNewTask}>
                     <input type="text" onChange={this.onInputChange} value={this.state.taskContent} placeholder="+Add Task" className="addTaskInput"/>
-            { this.state.showSubmit && <button onClick={this.addNewTask} className="addTaskSubmit"><b className="material-icons icon-button">add</b></button>}
+            { this.state.showSubmit && <button type="submit" className="addTaskSubmit"><b className="material-icons icon-button">add</b></button>}
+                    </form>
             </div>
         )
     }

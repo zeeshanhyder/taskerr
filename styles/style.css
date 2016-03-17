@@ -228,7 +228,7 @@ h1,h2,h3,h4,h5,h6{
 
 .taskCard.newTaskCard{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0;
     height: 40px;
     /* padding: 1px; */
@@ -236,6 +236,11 @@ h1,h2,h3,h4,h5,h6{
 .taskCard.newTaskCard .card-content{
     font-style: italic;
     color:rgba(0,0,0,0.5);
+}
+
+.addTaskForm{
+ display: flex;
+ height:100%;
 }
 
 .AddCardForm{
