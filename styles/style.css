@@ -1,0 +1,358 @@
+html{
+    width:100%;
+    height:100%;
+}
+body{
+   
+    margin:0;
+    padding:0;
+    height: 100%;
+    font-family:"Helvetica","Helvetica-Neue",Arial,sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0,0,0,0.65);
+}
+body *{
+    transition: all 350ms ease-in;
+}
+h1,h2,h3,h4,h5,h6{
+    margin:0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#wrapper{
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+#header{
+    min-height: 60px;
+    background: rgb(64,64,64);
+    padding:0 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#logo{
+    color: #fff;
+    flex: 1;
+}
+#app-main{
+    
+    display: flex;
+    flex-direction: column;
+    min-width: inherit;
+    max-width: 100%;
+    height: inherit;
+}
+
+.taskBoard{
+    padding:20px 20px;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    flex-wrap: wrap;
+    animation: animateBoard 500ms forwards;
+}
+.taskBoardInnerContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.taskList{
+    margin-right: 20px;
+    border:none;
+    flex-basis: 350px;
+    max-width: 350px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: animateList 250ms forwards;
+    transform-origin: center;
+}
+.tasklistHead{
+    display: flex;
+}
+.taskListInnerContent{
+    padding: 8px;
+    box-shadow: 0px 2px 2px 1px #444;
+    background: rgb(235,235,235);
+    border-radius: 3px;
+}
+
+.taskListInnerContent .taskListTitle{
+    margin-top:0;
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-basis: 100%;
+}
+.taskList.newList{
+    height: 25px;
+    background: transparent;
+    box-shadow: none;
+}
+.taskList.newList a{
+    color:#f7f7f7;
+    text-decoration: none;
+    border-bottom: dotted thin;
+    font-size: 12px;
+}
+
+
+.taskCard p{
+    margin:0;
+}
+.icon-button{
+    cursor: pointer;
+}
+.taskCard{
+    padding: 10px;
+    background: #fff;
+    color:rgba(0,0,0,0.8);
+    border-radius:3px;
+    border-bottom:solid 1px #ccc;
+    margin-bottom:5px;
+    display:flex;
+    min-height: 20px;
+    word-wrap: break-word;
+    overflow: hidden;
+    flex-direction: column;
+}   
+.taskCardInnerContent{
+    display: flex;
+    flex-direction: row;
+}
+.taskCardInnerContent .rename{
+    flex-basis: 100%;
+}
+.taskCard .card-content{
+    font-size: 14px;
+    flex-basis: 100%;
+    max-width: 100%;
+}
+.taskCard i{
+    display: none;
+    font-size: 18px;
+    padding-left: 5px;
+    color: rgba(0,0,0,0.65);
+    
+}
+
+.taskCard:hover i{
+    display: block;
+}
+.taskCard:hover .card-content{
+    max-width: 85%;
+}
+
+.searchContainer{
+    display: flex;
+    flex: 1;
+    flex-basis: 200px;
+    min-height: 40px;
+    height: 40px;
+    flex-direction: column;
+}
+.searchInnerContainer{
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+    position: relative;
+    
+}
+.searchContainer .taskSearch{
+    display: flex;
+    /* width: 100%; */
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.25);
+    border-radius: 3px;
+    padding: 0 10px;
+    color: #f5f5f5;
+    letter-spacing: 0.02em;
+    font-size: 14px;
+    height: inherit;
+}
+.searchContainer .taskSearch:focus{
+    background: #f7f7f7;
+    color:grey;
+}
+.resultsContainer{
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-height: 50px;
+    background: #fff;
+    margin-top: 5px;
+    border-radius: 3px;
+    box-shadow:0px 1px 1px 0px #999;
+    z-index: 999;
+}
+
+.boardOptions{
+    flex: 1;
+    flex-basis: 1;
+    justify-content: flex-end;
+    flex-direction: row;
+    display: flex;
+    position: relative;
+}
+
+.boardSelect{
+    min-width: 110px;
+    font-weight: bold;
+    background: rgb(64,64,64);
+    border:none;
+    outline: none;
+    padding:0 10px;
+    border-bottom: solid 2px brown;
+    color:#fff;
+}
+.newBoardBtn{
+    min-height: 35px;
+    margin:0 10px;
+    border-radius: 3px;
+    background: brown;
+    border:none;
+    color:#f7f7f7;
+    padding:5px;
+    min-width: 110px;
+    font-weight: bold;
+    outline: none;
+    box-shadow: 0px 1px 0px 1px #333;
+}
+
+
+.taskCard.newTaskCard{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    height: 40px;
+    /* padding: 1px; */
+}
+.taskCard.newTaskCard .card-content{
+    font-style: italic;
+    color:rgba(0,0,0,0.5);
+}
+
+.AddCardForm{
+    position: absolute;
+    left: 0;
+    right: 0;
+    min-height: 50px;
+    background: brown;
+    margin-top: 20px;
+    border-radius: 3px;
+    border-bottom: solid 2px rgba(0,0,0,0.5);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+}
+.AddCardForm:before{
+    position: absolute;
+    content: '';
+    border: solid 9px transparent;
+    border-bottom-color: brown;
+    top: -15px;
+    z-index: 1;
+    width: 0px;
+    left: 50%;
+}
+.initMessage{
+    align-items: center;
+    align-self: center;
+    display: flex;
+    height:inherit;
+}
+
+.addBoardInput{
+    flex-basis: 67%;
+    margin-right: 10px;
+    height: 20px;
+    background: #f0f0f0;
+    border: 0;
+    padding: 5px 10px;
+    border-radius: 3px;
+    outline: none;
+    /* color: #f7f7f7; */
+    border-bottom: solid thin #222;
+}
+.addBoardSubmit{
+    border: 0;
+    background: transparent;
+    /* border: solid thin #fff; */
+    padding: 8px 5px;
+    min-width: 70px;
+    border-radius: 3px;
+    /* text-transform: uppercase; */
+    background: rgba(0,0,0,0.2);
+    color: #ddd;
+    border-bottom: solid thin #222;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.addTaskForm{
+    display: flex;
+    height: inherit;
+}
+.addTaskInput{
+    border: none;
+    outline: none;
+    flex-basis: 85%;
+    height: 100%;
+    display: flex;
+    /* flex-direction: column; */
+    padding: 0 0 0 10px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.addTaskSubmit{
+    display: flex;
+    flex-grow: 1;
+    border: 0;
+    outline: 0;
+    background: darkturquoise;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    color: rgba(0,0,0,0.8);
+    font-weight: bold;
+    font-size: 12px;
+    height: 100%;
+    color: #fff;
+    padding-left: 8px;
+}
+
+@media screen and (min-width:590px)and (max-width:800px){
+    .taskList{
+        flex-basis: 245px;
+    }
+}
+
+@media screen  and (max-width: 599px){
+    #logo{
+        display: none;
+    }
+}
+
+
+
+/* Generic classes */
+@keyframes animateBoard{
+    0% {background: #f7f7f7;}
+    100% { background: rgb(84,84,84);}
+}
+@keyframes animateList{
+    0% { transform: scale(0);}
+    80% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+.hidden{
+    display: none;
+}
