@@ -220,7 +220,7 @@ var AddNewTaskCard = React.createClass({
         e.preventDefault();
         
         console.log(e.target.value);
-        if(e.target.value === ''|| e.target.value === undefined) return;
+        if(this.state.showSubmit === false) return;
         var taskListID = this.props.taskListID;
         var task={};
         task.name = new Date();
