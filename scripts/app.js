@@ -27,6 +27,9 @@ var TaskBoard = React.createClass({
         this.setState({isAddListActive: status});
     
     },
+    getCurrentTaskLists: function(){
+      return this.state.data;  
+    },
     render: function(){
         
         var taskLists = this.state.data.map((taskList)=>{
@@ -95,7 +98,6 @@ var TaskList = React.createClass({
         
         var boardData = JSON.parse(localStorage.getItem(SelectTaskBoardHandle.getCurrentBoard()));
         boardData.forEach((taskList,index)=>{
-            console.log(taskList);
             if(taskList.id === this.state.id){
                 taskList.taskItems = this.state.tasks;
                 return;
@@ -105,10 +107,12 @@ var TaskList = React.createClass({
       
     },
     removeTaskList: function(){
-        var newTaskList = this.state.taskLists;
+        var newTaskList = this.props.taskLists;
         newTaskList.forEach((taskList,index)=>{
            if(taskList.id === this.state.id){
+               console.log(this.state.id);
                newTaskList.splice(index,1);
+               return;
            } 
         });
         localStorage.setItem(SelectTaskBoardHandle.getCurrentBoard(), JSON.stringify(newTaskList));
@@ -215,7 +219,8 @@ var AddNewTaskCard = React.createClass({
         e.stopPropagation();
         e.preventDefault();
         
-        if(e.target.value === '') return;
+        console.log(e.target.value);
+        if(e.target.value === ''|| e.target.value === undefined) return;
         var taskListID = this.props.taskListID;
         var task={};
         task.name = new Date();
