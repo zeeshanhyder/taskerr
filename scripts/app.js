@@ -186,7 +186,7 @@ var TaskCard = React.createClass({
     render: function(){
         return (
             <div className="taskCard">
-                {this.state.editMode ?  <div className="taskCardInnerContent"><input autofocus type="text" onChange={this.onInputChange} value={this.state.newContent} placeholder="New content" className="addTaskInput rename"/><i className="material-icons icon-button" onClick={this.updateTaskContent}><b>done</b></i></div>:<div className="taskCardInnerContent">
+                {this.state.editMode ?  <div className="taskCardInnerContent"><input focus type="text" onChange={this.onInputChange} value={this.state.newContent} placeholder="New content" className="addTaskInput rename"/><i className="material-icons icon-button" onClick={this.updateTaskContent}><b>done</b></i></div>:<div className="taskCardInnerContent">
            <span className="card-content">{this.props.task.content}</span>
                     <i className="material-icons icon-button" onClick={this.renameTask}>edit</i>
                     <i className="material-icons icon-button" onClick={this.deleteTask}>delete</i></div>
@@ -352,7 +352,7 @@ var AddNewBoardForm = React.createClass({
 // This component lists all the saved TaskBoards, based on selection of which, the TaskBoard renders TaskLists in a board.
 var SelectTaskBoard = React.createClass({
     getInitialState: function(){
-        return({taskBoards:[], currentBoard: "",addNewBoardActive: false});
+        return({taskBoards:[], currentBoard: "",addNewBoardActive: false,selectedBoard:"-1"});
     },
     componentDidMount: function(){
         var taskBoards = JSON.parse( localStorage.getItem("boards") );
@@ -372,6 +372,7 @@ var SelectTaskBoard = React.createClass({
             TaskBoardHandle.updateTaskList(currentBoard);
             this.setState({currentBoard: selectedBoard, addNewBoardActive: false});
             SearchHandle.setSearchContext(selectedBoard);
+            this.setState({selectedBoard: selectedBoard});
         }else console.error("Invalid Task board!");
         
     },
@@ -383,13 +384,13 @@ var SelectTaskBoard = React.createClass({
         this.setState({addNewBoardActive: status});  
     },
     render: function(){
-        var taskBoards = this.state.taskBoards.map(function(taskboard){
+        var taskBoards = this.state.taskBoards.map((taskboard)=>{
             return( <option value={taskboard}>{taskboard}</option> );
         });
         return(
             <div>
-                <select onChange={this.setCurrentBoard} className="boardSelect">
-                    <option disabled selected value="">Select Board</option>
+                <select value={this.state.selectedBoard} onChange={this.setCurrentBoard} className="boardSelect">
+                    <option disabled value="-1">Select Board</option>
                     {taskBoards}
                 </select>
                 <button onClick={this.toggleAddBoard} className="newBoardBtn">New Board</button>
